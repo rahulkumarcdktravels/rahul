@@ -1,0 +1,5 @@
+<?php
+require_once __DIR__.'/includes/bootstrap.php';$slug=trim($_GET['slug']??'');$page=get_page($slug);
+if(!$page){http_response_code(404);$pageTitle='Page not found | Airlines Group Travel';include __DIR__.'/includes/header.php';echo '<section class="content-layout"><div class="container content-panel"><h1>Page not found</h1><p>The page may have moved or is unavailable.</p><a class="btn btn-primary" href="'.e(url('index.php')).'">Go home</a></div></section>';include __DIR__.'/includes/footer.php';exit;}
+$pageTitle=($page['meta_title']?:$page['title']).' | Airlines Group Travel';$metaDescription=$page['meta_description']?:excerpt(strip_tags($page['content']),155);include __DIR__.'/includes/header.php';?>
+<section class="page-hero"><div class="container"><span class="eyebrow">AIRLINES GROUP TRAVEL</span><h1><?=e($page['title'])?></h1></div></section><section class="content-layout"><div class="container content-panel prose"><?=$page['content']?></div></section><?php include __DIR__.'/includes/footer.php';?>
